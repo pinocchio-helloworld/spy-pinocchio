@@ -1,0 +1,56 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Editor settings
+.vscode/
+.idea/
+*.sublime-workspace
+
+# IDE meta files
+.DS_Store
+*.suo
+*.user
+*.iml
+
+# Environment variables
+.env
+local.env
+.env.*.local
+
+# Build artifacts
+frontend/dist/
+backend/target/
+out/
+build/
+dist/
+
+# Logs
+logs/
+*.log
+
+# Database files
+*.db
+*.sqlite
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Other
+.classpath
+.project
+target/
+bin/
+*.swp
+*.swo
+*.swn
+.DS_Store
+*.tmp
+*.d.ts
+*.map
+
+# Spring Boot
+*.jar
