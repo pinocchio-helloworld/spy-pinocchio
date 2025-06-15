@@ -4,7 +4,7 @@ import { User } from "./types";
 export default createStore({
   state: {
     user: {
-      name: "admin",
+      name: "spy",
       role: "admin",
     } as User | null, // 显式指定 user 的类型为 User | null
   },

@@ -24,6 +24,22 @@
           <i class="fas fa-search"></i>
           <span>图书查询</span>
         </div>
+        <div
+          class="nav-item"
+          :class="{ active: activeNav === 'borrow' }"
+          @click="gotoPage('borrow', '/admin-borrowbook')"
+        >
+          <i class="fas fa-book-reader"></i>
+          <span>借阅登记</span>
+        </div>
+        <div
+          class="nav-item"
+          :class="{ active: activeNav === 'return' }"
+          @click="gotoPage('return', '/admin-returnbook')"
+        >
+          <i class="fas fa-exchange-alt"></i>
+          <span>归还登记</span>
+        </div>
       </template>
       <template v-if="userRole === 'admin'">
         <div
@@ -49,22 +65,6 @@
         >
           <i class="fas fa-plus-circle"></i>
           <span>增添图书</span>
-        </div>
-        <div
-          class="nav-item"
-          :class="{ active: activeNav === 'borrow' }"
-          @click="gotoPage('borrow', '/admin-borrowbook')"
-        >
-          <i class="fas fa-book-reader"></i>
-          <span>借阅登记</span>
-        </div>
-        <div
-          class="nav-item"
-          :class="{ active: activeNav === 'return' }"
-          @click="gotoPage('return', '/admin-returnbook')"
-        >
-          <i class="fas fa-exchange-alt"></i>
-          <span>归还登记</span>
         </div>
         <div
           class="nav-item"

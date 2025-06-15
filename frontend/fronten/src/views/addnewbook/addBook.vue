@@ -46,6 +46,7 @@ const submitForm = async () => {
     const response = (await axios.post)<{
       message: string;
     }>("http://localhost:8080/api/update/addbook", book.value); // 直接传递book.value对象
+    alert("存入成功");
     console.log("提交的图书信息:", book.value);
     console.log("提交成功" + (await response).data.message);
   } catch (error) {

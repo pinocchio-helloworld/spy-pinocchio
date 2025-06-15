@@ -12,6 +12,7 @@ public class UserLogin {
     private String userpassword;
 
     private String userrole;
+    private Integer borrownum;
 
     // Getters and Setters
     public String getUserid() {
@@ -33,4 +34,12 @@ public class UserLogin {
     public String getUserrole(){return userrole;}
 
     public void setUserrole(String userrole){this.userrole=userrole;}
+
+    public Integer getBorrownum() {
+        return borrownum;
+    }
+
+    public void setBorrownum(Integer borrownum) {
+        this.borrownum = borrownum;
+    }
 }

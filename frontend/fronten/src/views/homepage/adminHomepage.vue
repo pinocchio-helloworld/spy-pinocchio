@@ -21,7 +21,7 @@
           </div>
           <div class="stat-content">
             <div class="stat-title">总图书数量</div>
-            <div class="stat-value">11</div>
+            <div class="stat-value">{{ totalBooks }}</div>
           </div>
         </div>
 
@@ -31,7 +31,7 @@
           </div>
           <div class="stat-content">
             <div class="stat-title">今日借书数量</div>
-            <div class="stat-value">0</div>
+            <div class="stat-value">{{ todayBorrowed }}</div>
           </div>
         </div>
 
@@ -41,7 +41,7 @@
           </div>
           <div class="stat-content">
             <div class="stat-title">今日还书数量</div>
-            <div class="stat-value">0</div>
+            <div class="stat-value">{{ todayReturned }}</div>
           </div>
         </div>
 
@@ -51,7 +51,7 @@
           </div>
           <div class="stat-content">
             <div class="stat-title">用户数量</div>
-            <div class="stat-value">2</div>
+            <div class="stat-value">{{ totalUsers }}</div>
           </div>
         </div>
       </div>
@@ -107,13 +107,34 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
+import axios from "axios";
+import { useStore } from "vuex";
 
 // 统计数据
 const totalBooks = ref(12856);
 const todayBorrowed = ref(243);
 const todayReturned = ref(187);
 const totalUsers = ref(3428);
+const store = useStore();
+
+const fetchInformation = async () => {
+  try {
+    const response = await axios.get("http://localhost:8080/api/information");
+    totalBooks.value = response.data.bookcounts;
+    todayBorrowed.value = response.data.borrowcounts;
+    todayReturned.value = response.data.returncounts;
+    totalUsers.value = response.data.usercounts;
+  } catch (error) {
+    console.error("获取数据失败", error);
+  }
+};
+
+// 在组件挂载时调用 fetchInformation
+fetchInformation();
+
+// 用户名
+const getUser = computed(() => store.getters.getUser?.name);
 </script>
 
 <style scoped>

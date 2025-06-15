@@ -32,8 +32,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import axios, { AxiosResponse } from "axios";
+import { useStore } from "vuex";
 
 interface Book {
   id: string;
@@ -46,11 +47,14 @@ interface Book {
 
 const searchTerm = ref<string>("");
 const books = ref<Book | null>(null);
+const store = useStore();
+const getUser = computed(() => store.getters.getUser?.name);
 
 const searchBooks = async () => {
   try {
+    // 假设用户ID存储在变量 `userId` 中
     const response: AxiosResponse<Book> = await axios.get<Book>(
-      `http://localhost:8080/api/update/searchbook?search=${searchTerm.value}`
+      `http://localhost:8080/api/update/searchbook-re?search=${searchTerm.value}&getuser=${getUser.value}`
     );
     books.value = response.data;
   } catch (error) {

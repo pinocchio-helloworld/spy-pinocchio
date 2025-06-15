@@ -34,8 +34,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import axios, { AxiosResponse } from "axios";
+import { useStore } from "vuex";
 
 interface Book {
   id: string;
@@ -46,6 +47,8 @@ interface Book {
   borrowed: boolean;
 }
 
+const store = useStore();
+const getUser = computed(() => store.getters.getUser?.name);
 const searchTerm = ref<string>("");
 const books = ref<Book | null>(null);
 
@@ -60,13 +63,13 @@ const searchBooks = async () => {
     alert("搜索图书失败，请稍后再试");
   }
 };
-
 const borrowBook = async (bookId: string) => {
   try {
     const response = await axios.post(
       `http://localhost:8080/api/update/borrowbook`,
       {
         bookId,
+        getuser: getUser.value,
       }
     );
     if (response.status === 200) {

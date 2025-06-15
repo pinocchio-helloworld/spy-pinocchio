@@ -47,6 +47,7 @@ public class LoginController {
         userLogin.setUserid(registerrequest.getUsername());
         userLogin.setUserpassword(registerrequest.getPassword());
         userLogin.setUserrole(registerrequest.getUserType());
+        userLogin.setBorrownum(0);
         userLoginRepository.save(userLogin);
 
         return ResponseEntity.ok(new ApiResponse(true,"注册成功,欢迎"+registerrequest.getUsername()));

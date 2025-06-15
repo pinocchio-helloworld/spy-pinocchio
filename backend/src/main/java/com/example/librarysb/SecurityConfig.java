@@ -17,6 +17,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/books").permitAll()
                         .requestMatchers("/api/update/**").permitAll()
                         .requestMatchers("/api/register").permitAll()
+                        .requestMatchers("api/information").permitAll()
                         .anyRequest().authenticated()
                 );
         return http.build();
